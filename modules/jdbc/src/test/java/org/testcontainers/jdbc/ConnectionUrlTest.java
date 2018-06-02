@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Optional;
+
 import static org.rnorth.visibleassertions.VisibleAssertions.*;
 
 public class ConnectionUrlTest {
@@ -38,7 +40,7 @@ public class ConnectionUrlTest {
         assertEquals("Database Type value is as expected", "mysql", url.getDatabaseType());
         assertFalse("Database Image tag value is as expected", url.getImageTag().isPresent());
         assertEquals("Database Host String is as expected", "somehostname/databasename", url.getDbHostString());
-        assertEquals("Query String value is as expected", "?", url.getQueryString().get());
+        assertEquals("Query String value is as expected", Optional.empty(), url.getQueryString());
         assertEquals("Database Host value is as expected", "somehostname", url.getDatabaseHost().get());
         assertFalse("Database Port is null as expected", url.getDatabasePort().isPresent());
         assertEquals("Database Name value is as expected", "databasename", url.getDatabaseName().get());

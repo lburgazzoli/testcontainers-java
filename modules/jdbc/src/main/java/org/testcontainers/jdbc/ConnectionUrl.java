@@ -109,7 +109,11 @@ public class ConnectionUrl {
                                 .map(e -> e.getKey() + "=" + e.getValue())
                                 .collect(Collectors.joining("&"));
 
-        queryString = Optional.of("?" + query);
+        if (query == null || query.trim().length() == 0) {
+            queryString = Optional.empty();
+        } else {
+            queryString = Optional.of("?" + query);
+        }
 
         containerParameters = Collections.unmodifiableMap(parseContainerParameters());
 
